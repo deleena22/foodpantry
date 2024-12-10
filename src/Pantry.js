@@ -44,8 +44,10 @@ function Pantry() {
       const response = await axios.post(
         "https://api.cohere.ai/v1/generate", 
         {
-          model: "command-xlarge", 
-          prompt: `Create a recipe using most if not all of the following ingredients: ${ingredients.join(", ")}. Provide detailed steps.`,
+          model: "command-xlarge",
+          //original query: `Create a recipe using most if not all of the following ingredients: ${ingredients.join(", ")}. Provide detailed steps.`, 
+          prompt: `Create a recipe using the following ingredients: ${ingredients.join(", ")}. Provide detailed steps. 
+          Can say no recipe possible for just these ingredients if not possible and then provide another recipe instead.`,
           max_tokens: 300,
           temperature: 0.7,
         },
@@ -77,22 +79,39 @@ function Pantry() {
       {/* Fridge Section */}
       <Box
         flex={0.7}
-        bgcolor="#c0876c"
+        bgcolor="#E7D4AB" //old color: "#E7D4AB" #c0876c
         display="flex"
         justifyContent="center"
         alignItems="center"
         position="relative"
       >
-        <Box
-          sx={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url(${ingredients.length === 0 ? '/Untitled_Artwork.png' : '/filledfridge.png'})`, // Conditional background image
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          }}
+
+      {/* Title */}
+      <Typography
+      variant="h2"
+      sx={{
+        position: "absolute",
+        top: "50%", // Center the text vertically
+        left: "5%", // Adjust horizontal positioning near the fridge
+        transform: "translateY(-50%) rotate(-90deg)", // Rotate without horizontal centering
+        color: "#87614E",
+        fontFamily: "'Sour Gummy', sans-serif",
+        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Subtle shadow for readability
+      }}
+      >
+        Pantry Pal
+      </Typography>
+
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          backgroundImage: `url(${ingredients.length === 0 ? '/Untitled_Artwork.png' : '/filledfridge.png'})`, // Conditional background image
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
         />
       </Box>
 
@@ -103,9 +122,10 @@ function Pantry() {
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="center"
-        bgcolor="#c0876c"
+        bgcolor= "#E7D4AB" //old color: "#c0876c""#E7D4AB"
         padding={2}
       >
+        
         {/* Add Ingredient Button */}
         <Button
           variant="contained"
@@ -261,10 +281,12 @@ function Pantry() {
             transform: "translate(-50%, -50%)",
             width: "90%",
             maxWidth: "1000px",
+            maxHeight: "80vh",
             bgcolor: "background.paper",
             border: "2px solid #000",
             boxShadow: 24,
             p: 4,
+            overflowY: "auto",
           }}
         >
           <Typography variant="h6" style={{ fontFamily: "'Sour Gummy', sans-serif" }}>
