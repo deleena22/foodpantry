@@ -1,0 +1,25 @@
+/* src/components/MaterialDropdown.css */
+
+.material-dropdown {
+    min-width: 200px;
+    width: 10%; /* Ensures the dropdown does not shrink */
+    background-color: white;
+    margin-top: 20px;
+    box-sizing: border-box; /* Ensures padding/border are included in width */
+}
+
+.material-dropdown .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23); /* Default border color */
+}
+
+.material-dropdown.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #61dafb; /* Border color on focus */
+}
+
+.material-dropdown:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #21a1f1; /* Border color on hover */
+}
+
+.material-dropdown .MuiSvgIcon-root {
+    color: #61dafb; /* Dropdown arrow icon color */
+}
